@@ -1,20 +1,23 @@
 body {
   font-family: Arial, sans-serif;
-  background-color: #f4f4f4;
+  background: linear-gradient(135deg, #1e1e2f, #2c2c54);
   margin: 0;
   padding: 0;
+  color: white;
 }
 
 .container {
-  width: 400px;
-  margin: 50px auto;
-  background: white;
-  padding: 20px;
-  border-radius: 10px;
+  width: 420px;
+  margin: 60px auto;
+  background: #2a2a40;
+  padding: 25px;
+  border-radius: 12px;
+  box-shadow: 0 10px 25px rgba(0,0,0,0.3);
 }
 
 h1 {
   text-align: center;
+  margin-bottom: 20px;
 }
 
 .input-section {
@@ -26,49 +29,91 @@ h1 {
 #taskInput {
   flex: 1;
   padding: 10px;
+  border-radius: 6px;
+  border: none;
+  outline: none;
 }
 
 #addBtn {
   padding: 10px 15px;
+  background: #00c9a7;
+  border: none;
+  border-radius: 6px;
   cursor: pointer;
+  color: white;
+  transition: 0.2s;
+}
+
+#addBtn:hover {
+  background: #00a78b;
 }
 
 li {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  background: #eee;
+  background: #3a3a5a;
   padding: 10px;
   margin-bottom: 10px;
-  border-radius: 6px;
+  border-radius: 8px;
+  transition: 0.2s;
 }
 
-.delete-btn {
-  background: red;
-  color: white;
-  border: none;
-  padding: 6px 10px;
-  cursor: pointer;
-  border-radius: 4px;
+li:hover {
+  background: #4a4a6a;
 }
-.completed {
+
+.completed span {
   text-decoration: line-through;
-  color: gray;
+  color: #aaa;
 }
+
 .edit-btn {
-  background-color: #3498db;
-  color: white;
+  background: #3498db;
   border: none;
   padding: 6px 10px;
-  margin-right: 8px;
+  border-radius: 5px;
+  color: white;
   cursor: pointer;
-  border-radius: 4px;
+  margin-right: 6px;
+  transition: 0.2s;
 }
 
 .edit-btn:hover {
-  background-color: #2980b9;
+  background: #2980b9;
 }
-.completed {
-  text-decoration: line-through;
-  color: gray;
+
+.delete-btn {
+  background: #e74c3c;
+  border: none;
+  padding: 6px 10px;
+  border-radius: 5px;
+  color: white;
+  cursor: pointer;
+  transition: 0.2s;
+}
+
+.delete-btn:hover {
+  background: #c0392b;
+}
+
+.filters {
+  display: flex;
+  justify-content: center;
+  gap: 10px;
+  margin-bottom: 15px;
+}
+
+.filters button {
+  padding: 6px 10px;
+  border: none;
+  border-radius: 6px;
+  cursor: pointer;
+  background: #555;
+  color: white;
+  transition: 0.2s;
+}
+
+.filters button:hover {
+  background: #777;
 }

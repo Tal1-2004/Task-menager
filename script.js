@@ -39,6 +39,8 @@ function renderTasks() {
 
   tasks.forEach(function(task, index) {
     const li = document.createElement("li");
+    if (currentFilter === "active" && task.completed) return;
+    if (currentFilter === "completed" && !task.completed) return;
 
     if (task.completed) {
     li.classList.add("completed");
@@ -115,4 +117,8 @@ function deleteTask(index) {
 
 function saveTasks() {
   localStorage.setItem("tasks", JSON.stringify(tasks));
+}
+function setFilter(filter) {
+  currentFilter = filter;
+  renderTasks();
 }
