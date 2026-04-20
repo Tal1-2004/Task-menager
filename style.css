@@ -55,3 +55,16 @@ li {
   text-decoration: line-through;
   color: gray;
 }
+.edit-btn {
+  background-color: #3498db;
+  color: white;
+  border: none;
+  padding: 6px 10px;
+  margin-right: 8px;
+  cursor: pointer;
+  border-radius: 4px;
+}
+
+.edit-btn:hover {
+  background-color: #2980b9;
+}

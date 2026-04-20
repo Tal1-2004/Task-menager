@@ -35,24 +35,68 @@ function renderTasks() {
 
   tasks.forEach(function(task, index) {
     const li = document.createElement("li");
-    li.textContent = task;
-    li.addEventListener("click", function () {
+
+    const taskSpan = document.createElement("span");
+    taskSpan.textContent = task;
+
+    li.appendChild(taskSpan);
+    taskSpan.addEventListener("click", function () {
     li.classList.toggle("completed");
-});
+
+    });
 
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("delete-btn");
 
-    deleteBtn.addEventListener("click", function() {
+    const editBtn = document.createElement("button");
+    editBtn.textContent = "Edit";
+    editBtn.classList.add("edit-btn");
+
+    deleteBtn.addEventListener("click", function(e) {
+      e.stopPropagation();
       deleteTask(index);
     });
 
+    editBtn.addEventListener("click", function (e) {
+  e.stopPropagation();
+
+  const input = document.createElement("input");
+  input.type = "text";
+  input.value = task;
+
+  li.innerHTML = "";
+  li.appendChild(input);
+
+  input.focus();
+
+  input.addEventListener("blur", saveEdit);
+  input.addEventListener("keypress", function (e) {
+    if (e.key === "Enter") {
+      saveEdit();
+    }
+  });
+
+  function saveEdit() {
+    const newValue = input.value.trim();
+
+    if (newValue !== "") {
+      tasks[index] = newValue;
+      saveTasks();
+      renderTasks();
+    } else {
+      renderTasks();
+    }
+  }
+});
+
+    li.appendChild(editBtn);
     li.appendChild(deleteBtn);
+
     taskList.appendChild(li);
   });
 }
-
+        
 function deleteTask(index) {
   tasks.splice(index, 1);
   saveTasks();
