@@ -106,16 +106,22 @@ li:hover {
 
 .filters button {
   padding: 6px 10px;
+  padding: 6px 10px;
   border: none;
   border-radius: 6px;
   cursor: pointer;
   background: #555;
   color: white;
+  font-size: 14px;
+  min-width: 80px;
   transition: 0.2s;
 }
 
 .filters button:hover {
   background: #777;
+}
+.filters button.active {
+  background: #00c9a7;
 }
 li input[type="checkbox"] {
   margin-right: 10px;
@@ -125,4 +131,25 @@ li input[type="checkbox"] {
   text-align: center;
   margin-top: 10px;
   color: #aaa;
+}
+.clear-container {
+  display: flex;
+  justify-content: center;
+  margin-top: 8px;
+}
+
+#clearCompleted {
+  padding: 6px 12px;
+  background: #c75c5c;
+  border: 1px solid #c75c5c;
+  color: white;
+  border-radius: 6px;
+  cursor: pointer;
+  font-size: 14px;
+  transition: 0.2s;
+}
+
+#clearCompleted:hover {
+  background: #444;
+  color: white;
 }

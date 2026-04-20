@@ -4,7 +4,7 @@ const taskCounter = document.getElementById("taskCounter");
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
-
+const clearBtn = document.getElementById("clearCompleted");
 const savedTasks = localStorage.getItem("tasks");
 
 if (savedTasks) {
@@ -163,5 +163,17 @@ function saveTasks() {
 }
 function setFilter(filter) {
   currentFilter = filter;
+
+  document.querySelectorAll(".filters button").forEach(btn => {
+    btn.classList.remove("active");
+  });
+
+  document.getElementById("filter-" + filter).classList.add("active");
+
   renderTasks();
 }
+clearBtn.addEventListener("click", function () {
+  tasks = tasks.filter(task => !task.completed);
+  saveTasks();
+  renderTasks();
+});
