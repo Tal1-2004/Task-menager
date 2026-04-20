@@ -38,25 +38,32 @@ function renderTasks() {
   taskList.innerHTML = "";
 
   tasks.forEach(function(task, index) {
-    const li = document.createElement("li");
+
     if (currentFilter === "active" && task.completed) return;
     if (currentFilter === "completed" && !task.completed) return;
 
-    if (task.completed) {
-    li.classList.add("completed");
-}
+    const li = document.createElement("li");
 
+    if (task.completed) {
+      li.classList.add("completed");
+    }
+
+    
+    const checkbox = document.createElement("input");
+    checkbox.type = "checkbox";
+    checkbox.checked = task.completed;
+
+    checkbox.addEventListener("change", function () {
+      task.completed = checkbox.checked;
+      saveTasks();
+      renderTasks();
+    });
+
+    
     const taskSpan = document.createElement("span");
     taskSpan.textContent = task.text;
 
-    li.appendChild(taskSpan);
-    taskSpan.addEventListener("click", function () {
-    task.completed = !task.completed;
-    saveTasks();
-    renderTasks();
-
-    });
-
+   
     const deleteBtn = document.createElement("button");
     deleteBtn.textContent = "Delete";
     deleteBtn.classList.add("delete-btn");
@@ -70,6 +77,37 @@ function renderTasks() {
       deleteTask(index);
     });
 
+    editBtn.addEventListener("click", function (e) {
+      e.stopPropagation();
+
+      const input = document.createElement("input");
+      input.type = "text";
+      input.value = task.text;
+
+      li.innerHTML = "";
+      li.appendChild(input);
+
+      input.focus();
+
+      input.addEventListener("blur", saveEdit);
+      input.addEventListener("keypress", function (e) {
+        if (e.key === "Enter") {
+          saveEdit();
+        }
+      });
+
+      function saveEdit() {
+        const newValue = input.value.trim();
+
+        if (newValue !== "") {
+          tasks[index].text = newValue;
+          saveTasks();
+          renderTasks();
+        } else {
+          renderTasks();
+        }
+      }
+    });
     editBtn.addEventListener("click", function (e) {
   e.stopPropagation();
 
@@ -102,9 +140,11 @@ function renderTasks() {
   }
 });
 
+    li.appendChild(checkbox);
+    li.appendChild(taskSpan);
     li.appendChild(editBtn);
     li.appendChild(deleteBtn);
-
+    
     taskList.appendChild(li);
   });
 }
