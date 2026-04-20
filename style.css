@@ -121,3 +121,8 @@ li input[type="checkbox"] {
   margin-right: 10px;
   transform: scale(1.2);
 }
+#taskCounter {
+  text-align: center;
+  margin-top: 10px;
+  color: #aaa;
+}

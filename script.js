@@ -1,6 +1,6 @@
 let tasks = [];
 let currentFilter = "all";
-
+const taskCounter = document.getElementById("taskCounter");
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
 const taskList = document.getElementById("taskList");
@@ -58,6 +58,9 @@ function renderTasks() {
       saveTasks();
       renderTasks();
     });
+    
+    const activeTasks = tasks.filter(task => !task.completed).length;
+    taskCounter.textContent = activeTasks + " tasks left";
 
     
     const taskSpan = document.createElement("span");
