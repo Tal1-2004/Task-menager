@@ -1,4 +1,5 @@
 let tasks = [];
+let currentFilter = "all";
 
 const taskInput = document.getElementById("taskInput");
 const addBtn = document.getElementById("addBtn");
@@ -23,7 +24,10 @@ function addTask() {
 
   if (taskText === "") return;
 
-  tasks.push(taskText);
+  tasks.push({
+  text: taskText,
+  completed: false
+});
   saveTasks();
   renderTasks();
 
@@ -36,12 +40,18 @@ function renderTasks() {
   tasks.forEach(function(task, index) {
     const li = document.createElement("li");
 
+    if (task.completed) {
+    li.classList.add("completed");
+}
+
     const taskSpan = document.createElement("span");
-    taskSpan.textContent = task;
+    taskSpan.textContent = task.text;
 
     li.appendChild(taskSpan);
     taskSpan.addEventListener("click", function () {
-    li.classList.toggle("completed");
+    task.completed = !task.completed;
+    saveTasks();
+    renderTasks();
 
     });
 
@@ -63,7 +73,7 @@ function renderTasks() {
 
   const input = document.createElement("input");
   input.type = "text";
-  input.value = task;
+  input.value = task.text;
 
   li.innerHTML = "";
   li.appendChild(input);
@@ -81,7 +91,7 @@ function renderTasks() {
     const newValue = input.value.trim();
 
     if (newValue !== "") {
-      tasks[index] = newValue;
+      tasks[index].text = newValue;
       saveTasks();
       renderTasks();
     } else {

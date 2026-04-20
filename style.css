@@ -68,3 +68,7 @@ li {
 .edit-btn:hover {
   background-color: #2980b9;
 }
+.completed {
+  text-decoration: line-through;
+  color: gray;
+}
